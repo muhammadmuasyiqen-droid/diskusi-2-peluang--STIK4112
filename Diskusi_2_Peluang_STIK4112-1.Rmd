@@ -1,0 +1,173 @@
+---
+title: "Diskusi 2: Peluang dan Unsur-unsur Peluang"
+author: "Nama: Muhammad Taqqiyyul Mu'asyiqiin  \nNIM: 059407654"
+date: ""
+output:
+  html_document:
+    toc: false
+    theme: readable
+    df_print: paged
+    self_contained: true
+---
+
+# 1. Ruang Sampel dan Kejadian
+
+Seorang mahasiswa mempertimbangkan hasil ujian yang mungkin diperoleh setelah belajar atau tidak belajar. Dalam contoh ini, hasil ujian dapat berupa **lulus** atau **tidak lulus**.
+
+# a. Ruang Sampel (S)
+
+Ruang sampel adalah kumpulan seluruh kemungkinan hasil yang dapat terjadi.
+
+```{r ruang-sampel}
+S <- c("Lulus", "Tidak lulus")
+S
+```
+
+Jadi:
+
+\[S = \{\text{Lulus, Tidak lulus}\}\]
+
+# b. Kejadian (A)
+
+Misalkan kejadian \(A\) adalah mahasiswa **lulus ujian**.
+
+```{r kejadian}
+A <- "Lulus"
+A
+```
+
+Jadi, \(A\) merupakan kejadian yang ingin dihitung peluangnya.
+
+# c. Contoh penerapan peluang
+
+Contoh lain dalam kehidupan sehari-hari adalah **kemungkinan terlambat saat berangkat kuliah**. Hasil yang mungkin adalah terlambat atau tidak terlambat. Informasi tersebut dapat digunakan sebagai pertimbangan untuk menentukan waktu berangkat.
+
+---
+
+# 2. Peluang Jenis Kelamin Anak
+
+Sebuah keluarga memiliki 4 orang anak. Jenis kelamin setiap anak diamati berdasarkan urutan kelahirannya.
+
+Keterangan:
+
+- \(L\) = laki-laki
+- \(P\) = perempuan
+
+Karena setiap anak mempunyai 2 kemungkinan jenis kelamin, maka banyak anggota ruang sampel adalah:
+
+```{r ruang-sampel-anak}
+nS <- 2^4
+nS
+```
+
+Jadi:
+
+\[n(S)=2^4=16\]
+
+# a. Menentukan \(P(A)\)
+
+\(A\) adalah kejadian keluarga memiliki **paling sedikit 2 anak laki-laki**.
+
+Artinya, jumlah anak laki-laki dapat berupa 2, 3, atau 4 orang.
+
+```{r peluang-A}
+nA <- choose(4, 2) + choose(4, 3) + choose(4, 4)
+PA <- nA / nS
+
+nA
+PA
+```
+
+Dengan demikian:
+
+\[n(A)=6+4+1=11\]
+
+\[P(A)=\frac{11}{16}=0.6875\]
+
+Jadi, peluang \(A\) adalah **68,75%**.
+
+---
+
+# b. Menentukan \(P(B)\)
+
+\(B\) adalah kejadian **anak kedua laki-laki dan anak ketiga perempuan**.
+
+Anak pertama dan anak keempat masih bebas, sehingga terdapat:
+
+```{r peluang-B}
+nB <- 2 * 2
+PB <- nB / nS
+
+nB
+PB
+```
+
+Maka:
+
+\[n(B)=4\]
+
+\[P(B)=\frac{4}{16}=\frac{1}{4}=0.25\]
+
+Jadi, peluang \(B\) adalah **25%**.
+
+---
+
+# c. Menentukan \(P(A \cap B)\)
+
+\(A \cap B\) berarti kejadian \(A\) dan \(B\) terjadi secara bersamaan.
+
+Karena anak kedua sudah laki-laki dan anak ketiga perempuan, agar terdapat paling sedikit 2 anak laki-laki, maka anak pertama atau anak keempat harus laki-laki.
+
+Kemungkinan yang memenuhi ada **3**.
+
+```{r peluang-irisan}
+nAB <- 3
+PAB <- nAB / nS
+
+nAB
+PAB
+```
+
+Sehingga:
+
+\[P(A\cap B)=\frac{3}{16}=0.1875\]
+
+Jadi, peluang \(A\cap B\) adalah **18,75%**.
+
+---
+
+# d. Menentukan \(P(A|B)\)
+
+Pada bagian ini diketahui bahwa \(B\) telah terjadi, sehingga digunakan **peluang bersyarat**:
+
+\[P(A|B)=\frac{P(A\cap B)}{P(B)}\]
+
+```{r peluang-bersyarat}
+PA_B <- PAB / PB
+PA_B
+```
+
+Maka:
+
+\[P(A|B)
+=
+\frac{3/16}{4/16}
+=
+\frac{3}{4}
+=
+0.75\]
+
+Jadi, peluang keluarga memiliki paling sedikit 2 anak laki-laki jika diketahui anak kedua laki-laki dan anak ketiga perempuan adalah **75%**.
+
+---
+
+# Kesimpulan
+
+Dari perhitungan di atas diperoleh:
+
+- \(P(A)=\frac{11}{16}=68,75\%\)
+- \(P(B)=\frac{1}{4}=25\%\)
+- \(P(A\cap B)=\frac{3}{16}=18,75\%\)
+- \(P(A|B)=\frac{3}{4}=75\%\)
+
+Perhitungan tersebut menunjukkan bahwa **peluang bersyarat menggunakan informasi tambahan yang sudah diketahui**, sehingga ruang kemungkinan yang dipertimbangkan menjadi lebih khusus.
