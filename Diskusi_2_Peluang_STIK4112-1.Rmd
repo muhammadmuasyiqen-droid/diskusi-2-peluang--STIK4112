@@ -1,6 +1,6 @@
 ---
 title: "Diskusi 2: Peluang dan Unsur-unsur Peluang"
-author: "Nama: Muhammad Taqqiyyul Mu'asyiqiin  \nNIM: 059407654"
+author: "Nama: Muhammad Taqqiyyul Mu'asyiqiin "
 date: ""
 output:
   html_document:
